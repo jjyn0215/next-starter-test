@@ -1,30 +1,38 @@
 'use client';
-
-import { useState, useEffect } from "react";
+import React from "react";
 
 export default function Home() {
-  const [isInverted, setIsInverted] = useState(false);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsInverted(prev => !prev);
-    }, 200);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
   return (
-    <div 
-      className={`w-full h-screen flex items-center justify-center ${
-        isInverted ? 'bg-red-600' : 'bg-white'
-      }`}
-    >
-      <div 
-        className={`rounded-full aspect-square ${
-          isInverted ? 'bg-white' : 'bg-red-600'
-        }`}
-        style={{ width: '40vmin' }}
-      ></div>
+    <div className="japan-flag w-full h-screen flex items-center justify-center">
+      <div className="japan-circle rounded-full aspect-square" style={{ width: '40vmin' }}></div>
+      
+      <style jsx global>{`
+        @keyframes colorSwap {
+          0%, 49.99% {
+            background-color: white;
+          }
+          50%, 100% {
+            background-color: #dc2626;
+          }
+        }
+        
+        @keyframes circleColorSwap {
+          0%, 49.99% {
+            background-color: #dc2626;
+          }
+          50%, 100% {
+            background-color: white;
+          }
+        }
+        
+        .japan-flag {
+          animation: colorSwap 0.4s steps(1) infinite;
+        }
+        
+        .japan-circle {
+          animation: circleColorSwap 0.4s steps(1) infinite;
+        }
+      `}</style>
     </div>
   );
 }
